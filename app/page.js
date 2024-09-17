@@ -4,6 +4,7 @@ import DeleteUserForm from "@/components/DeleteUser";
 import UpdateUserForm from "@/components/UpdateUser";
 import GetUserForm from "@/components/GetUser";
 import UserCountButton from "@/components/GetUsersButton"
+import { connectWithMetamask } from "./utils"
 
 export default function Home() {
   return (
@@ -15,13 +16,13 @@ export default function Home() {
         </button>
       </nav>
       <div className="grid grid-cols-3">
-      <CreateUser />
+        <CreateUser />
         <DeleteUserForm />
         <UpdateUserForm />
         <GetUserForm />
         <UserCountButton />
       </div>
-        
+
     </div>
   );
 }
