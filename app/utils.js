@@ -22,28 +22,55 @@ export async function connectWithMetamask() {
 connectWithMetamask();
 
 // Utility to create a new user
-export async function createUser() {
-
+export async function createUser(name,favNumber) {
+    await connectWithMetamask();
+    const contract = new ethers.Contract(contractAddress,contractAbi,signer);
+    const tx = await contract.createUser(name,favNumber);
+    console.log("user create transaction",tx);
+    return tx;
 }
 
 // Utility to get a user's details
-export async function getUser() {
+export async function getUser(userId) {
+    await connectWithMetamask();
+    const contract = new ethers.Contract(contractAddress,contractAbi,provider);
+    const user = await contract.getUser(userId);
+    console.log("user details",user);
+    return {
+        id: user[0].toString(),
+        name: user[1],
+        favNumber: user[2].toString(),
+    };
 
 }
 
 // Utility to delete a user
-export async function deleteUser() {
-
+export async function deleteUser(userId) {
+    await connectWithMetamask();
+    const contract = new ethers.Contract(contractAddress,contractAbi,signer);
+    const tx = await contract.deleteUser(userId);
+    console.log("user delete transaction",tx);
+    return tx;
 }
 
 // Utility to update a user's name and favorite number
-export async function updateUser() {
-
+export async function updateUser(userId,name,favNumber) {
+    await connectWithMetamask();
+    const contract = new ethers.Contract(contractAddress,contractAbi,signer);
+    const tx = await contract.updateUser(userId,name,favNumber);
+    console.log("user update transaction",tx);
+    return tx;
 }
 
 
 
 // Utility to get the total number of users
 export async function getUserCount() {
-
+    await connectWithMetamask();
+    const contract = new ethers.Contract(contractAddress,contractAbi,provider);
+    const users = await contract.getUserCount();
+    console.log("users details",user);
+    return {
+        id: user[0].toString(),
+    };
 }
